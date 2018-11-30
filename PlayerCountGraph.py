@@ -4,25 +4,19 @@ from bs4 import BeautifulSoup
 from bs4.element import Comment
 import urllib.request
 
-# to download the page
-import requests
-
-# use for time delay on scraping
+# use for time delay
 import time
 
-# allows us to email
-import smtplib
+# This is how frequently (in seconds) the graph will update player count
+update_frequency = 60
 
+# turns on interactive mode
+plt.ion()
 
-old_txt = ""
-
+# list of player counts (grows over time)
 player_counts = []
-
-plt.plot([1,2,3,6])
-plt.ylabel('some numbers')
-plt.show()
     
-# The following two methods were obtained from:
+# The following two functions were obtained from:
 # https://stackoverflow.com/questions/1936466/beautifulsoup-grab-visible-webpage-text
 def tag_visible(element):
     if element.parent.name in ['style', 'script', 'head', 'title', 'meta', '[document]']:
@@ -47,7 +41,6 @@ while True:
     index = txt.find('currently')
     displacement = len('currently') + 1
     num_location = index + displacement
-    print(txt[num_location])
     
     while (txt[num_location] != ','):
         current_num += txt[num_location]
@@ -59,12 +52,16 @@ while True:
         current_num += txt[num_location]
         num_location += 1
         
-    print(current_num)
+    #print(current_num)
     player_counts.append(int(current_num))
     
-    print(player_counts)
+    #print(player_counts)
+    plt.plot(player_counts)
+    plt.ylabel('Players online')
+    plt.pause(0.0001)
+
     
-    # check the player count every 60 seconds
+    # check the player count every x seconds
     time.sleep(2)
 
 
