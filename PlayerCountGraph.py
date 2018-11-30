@@ -8,10 +8,24 @@ import urllib.request
 import time
 
 # This is how frequently (in seconds) the graph will update player count
-update_frequency = 60
+# Recommended: Set update_frequency to 1 (second), 60 (minute), or 3600 (hour)
+update_frequency = 1
 
 # turns on interactive mode
 plt.ion()
+
+# sets the y label to players online
+plt.ylabel('Players online')
+
+# sets the x label to reflect update_frequency
+if update_frequency == 1:
+    plt.xlabel('Seconds')
+elif update_frequency == 60:
+    plt.xlabel('Minutes')
+elif update_frequency == 3600:
+    plt.xlabel('Hours')
+else:
+    plt.xlabel('Seconds (' + str(update_frequency) + 's)')
 
 # list of player counts (grows over time)
 player_counts = []
@@ -57,12 +71,11 @@ while True:
     
     #print(player_counts)
     plt.plot(player_counts)
-    plt.ylabel('Players online')
     plt.pause(0.0001)
 
     
     # check the player count every x seconds
-    time.sleep(2)
+    time.sleep(update_frequency)
 
 
 
