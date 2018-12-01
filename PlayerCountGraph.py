@@ -6,13 +6,17 @@ import urllib.request
 
 # use for time delay
 import time
-
+value_set = False
 # This is how frequently (in seconds) the graph will update player count
 # Recommended: Set update_frequency to 1 (second), 60 (minute), or 3600 (hour)
-update_frequency = int(input("""At what frequency would  you like to update the graph? \nFor reference:
-                             \nOne second: 1 \nOne minute: 60 \nOne hour: 3600\n"""))
-
-
+while value_set == False:
+    try:
+        update_frequency = int(input("""At what frequency would  you like to update the graph? \nFor reference:
+                                     \nOne second: 1 \nOne minute: 60 \nOne hour: 3600\n"""))
+        if (update_frequency > 0):
+            value_set = True
+    except ValueError:
+        print("Please enter a positive number!")
 # turns on interactive mode
 plt.ion()
 
