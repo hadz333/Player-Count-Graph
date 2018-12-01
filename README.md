@@ -7,4 +7,4 @@ For example, if you set the graph to update every 60 seconds and let the program
 The graph utilizes the matplotlib plugin.
 (https://matplotlib.org/users/pyplot_tutorial.html). 
 
-The update frequency of the graph is by default 1 second. This can be changed via the update_frequency variable in the PlayerCountGraph.py file (line 12).
+The update frequency of the graph is determined by the user, who is prompted to enter a number when the program runs.
